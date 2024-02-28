@@ -9,6 +9,7 @@ db = Database(DB_NAME)
 
 def make_categories_kb():
     categories = db.get_categories()
+    # print(categories)
     rows = []
     for cat in categories:
         rows.append([
@@ -21,6 +22,21 @@ def make_categories_kb():
     )
     return inl_kb
 
+
+def categories_kb_4_products():
+    categories = db.get_categories()
+    # print(categories)
+    rows = []
+    for cat in categories:
+        rows.append([
+            InlineKeyboardButton(
+                text=cat[1], callback_data=str(cat[0])
+            )]
+        )
+    inl_kb = InlineKeyboardMarkup(
+        inline_keyboard=rows
+    )
+    return inl_kb
 
 def make_confirm_kb():
     rows = [
